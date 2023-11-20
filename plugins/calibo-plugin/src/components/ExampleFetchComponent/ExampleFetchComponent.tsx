@@ -244,7 +244,9 @@ type User = {
     last: string; // "Reed"
   };
   email: string; // "duane.reed@example.com"
-  picture: string; // "https://api.dicebear.com/6.x/open-peeps/svg?seed=Duane"
+  picture: {
+   thumbnail: string; // "https://api.dicebear.com/6.x/open-peeps/svg?seed=Duane"
+  }
   nat: string; // "AU"
 };
 
@@ -266,7 +268,7 @@ export const DenseTable = ({ users }: DenseTableProps) => {
     return {
       avatar: (
         <img
-          src={user.picture}
+          src={user.picture.thumbnail }
           className={classes.avatar}
           alt={user.name.first}
         />
@@ -290,8 +292,10 @@ export const DenseTable = ({ users }: DenseTableProps) => {
 export const ExampleFetchComponent = () => {
 
   const { value, loading, error } = useAsync(async (): Promise<User[]> => {
-    // Would use fetch in a real world example
-    return exampleUsers.results;
+    const response = await fetch('https://randomuser.me/api/?results=5');
+    const data = await response.json();
+    return data.results;
+    // return exampleUsers.results;
   }, []);
 
   if (loading) {
