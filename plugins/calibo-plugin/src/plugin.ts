@@ -1,4 +1,4 @@
-import { createPlugin, createRoutableExtension } from '@backstage/core-plugin-api';
+import { createComponentExtension, createPlugin, createRoutableExtension } from '@backstage/core-plugin-api';
 
 import { rootRouteRef } from './routes';
 
@@ -15,5 +15,27 @@ export const CaliboPluginPage = caliboPluginPlugin.provide(
     component: () =>
       import('./components/ExampleComponent').then(m => m.ExampleComponent),
     mountPoint: rootRouteRef,
+  }),
+);
+
+
+export const EntityCaliboPluginCard = caliboPluginPlugin.provide(
+  createComponentExtension({
+    name: 'EntityCaliboPluginCard',
+    component: {
+      lazy: () =>
+      import('./components/EntityOverviewCard').then(
+        m => m.EntityOverviewCard
+        ),
+    },
+  }),
+);
+
+export const CaliboPluginContent = caliboPluginPlugin.provide(
+  createRoutableExtension({
+    name: 'CaliboPluginContent',
+    component: () => 
+      import('./components/EntityOverviewCard').then(m => m.EntityOverviewCard),
+      mountPoint: rootRouteRef,
   }),
 );

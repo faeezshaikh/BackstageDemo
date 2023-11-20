@@ -1,1 +1,1 @@
-export { caliboPluginPlugin, CaliboPluginPage } from './plugin';
+export { caliboPluginPlugin, CaliboPluginPage, EntityCaliboPluginCard, CaliboPluginContent } from './plugin';

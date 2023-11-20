@@ -59,6 +59,8 @@ import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 import { EntityGithubPullRequestsContent } from '@roadiehq/backstage-plugin-github-pull-requests';
 import { EntityGithubPullRequestsOverviewCard } from '@roadiehq/backstage-plugin-github-pull-requests';
+import { EntityCaliboPluginCard } from '@internal/plugin-calibo-plugin'
+import {CaliboPluginContent } from '@internal/plugin-calibo-plugin'
 
 
 const techdocsContent = (
@@ -144,7 +146,14 @@ const overviewContent = (
     <Grid item md={6}  xs={12}>
         <EntityGithubPullRequestsOverviewCard />
       </Grid>
+
+      <Grid item md={12}  xs={12}>
+        <EntityCaliboPluginCard />
+      </Grid>
+
   </Grid>
+
+  
 );
 
 const serviceEntityPage = (
@@ -185,6 +194,10 @@ const serviceEntityPage = (
 
     <EntityLayout.Route path="/pull-requests" title="Pull Requests">
       <EntityGithubPullRequestsContent />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/calibo" title="Calibo">
+      <CaliboPluginContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
